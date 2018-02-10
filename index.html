@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Hangman:  </title>
+</head>
+<body>
+    
+    <p>Hangman</p>
+
+
+    <!-- On-screen instructions -->
+    <p>Guess a letter</p>
+    <!-- Word Board   -->
+    <p>WORD:  <span id="letterboard"></span></p>
+    <!-- Letters played  -->
+    <p>Used letters: <span id="used"></span></p>
+    <!-- Turns remaining  -->
+    <p>Turns left: <span id="turns"></span></p>
+    <!--   -->
+    <!--   -->
+    <!-- End of HTML   -->
+
+    <script>
+    
+    // initialize var's
+    var wordDisplay = document.getElementById("letterboard");
+    var turnsLeft = document.getElementById("turns");
+    // list of words: initialize array 
+    var food = ["spaghetti", "hamburger", "taco", "pizza"];
+    // select random word from list 
+        
+    var randNum = Math.floor(Math.random() * food.length);
+            console.log(food[randNum]);
+    var gameWord = food[randNum];
+    
+
+    //create array of characters from word(string)
+    //populate letter board with blanks
+        var word = [];
+        var blank = [];
+        
+        for (var i=0; i<gameWord.length; i++){ 
+            word.push(gameWord.charAt(i));
+            blank.push("_");
+            console.log(word[i]);
+        }
+    
+        wordDisplay.textContent = blank.join(" ");
+        turnsLeft.textContent = gameWord.length-1;
+// game board display set for start of game
+
+
+            // for loop -- assign each letter of word to new array Letter[]
+            // write to doc:  
+            //   show blanks for word -- blank[]
+
+            // capture user input:  onkeyup
+            // is input valid?
+
+                // YES: 
+                // for loop:  compare user input to each letter of Letter[]
+                    //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
+                    //if no matches:  add letter to Used[] update Turns-1                
+                //update board:  Blank[], letters played:Used[],turns left:Turns    
+
+
+                // NO:
+                // alert : press a key A-Z
+
+        //
+    
+    
+    
+    </script>
+</body>
+</html>
