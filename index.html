@@ -19,17 +19,19 @@
     <p>Used letters: <span id="used"></span></p>
     <!-- Turns remaining  -->
     <p>Turns left: <span id="turns"></span></p>
-    <!--   -->
-    <!--   -->
+    <!-- Game over msg -->
+    <p><span id="gameover"></span></p>
     <!-- End of HTML   -->
 
-    <script>
+
+<script>
     
     // initialize var's
     var wordDisplay = document.getElementById("letterboard");
     var played = document.getElementById("used");
     var turnsLeft = document.getElementById("turns");
-
+    var gameover = document.getElementById("gameover");
+    
     // list of words: initialize array 
     var food = ["spaghetti", "hamburger", "taco", "pizza", "felafel"];
 
@@ -43,7 +45,7 @@
     //populate letter board with blanks, post turns left
         var word = [];
         var blank = [];
-        
+        var turn = 8;
         for (var i=0; i<gameWord.length; i++){ 
             word.push(gameWord.charAt(i));
             blank.push("_");
@@ -51,37 +53,66 @@
         }
     
         wordDisplay.textContent = blank.join(" ");
-        turnsLeft.textContent = gameWord.length-1;
+        turnsLeft.innerHTML = turn;
     // game board display set for start of game
   var letters=[];
-
+  var replacedBlanks = 0;
     // START PLAY
 
-    // capture user input:  onkeyup
-    document.onkeyup = function(event) {
+// capture user input:  onkeyup
+document.onkeyup = function(event) {
 
-        var guess = event.key.toLowerCase();
-        console.log("User guess  " + guess);
+    if (turn > 0) {
+            var count = 0;
+           
+            var guess = event.key.toLowerCase();
+            console.log("User guess  " + guess);
+
+//**************check to see that the guess is a new letter not previously played AND is valid key A-Z
+//*********if (){}
+
+            // update used letters with guessed letter
+            letters.push(guess);
+            played.textContent = letters.join(', ');
         
-        // update used letters with guessed letter
-        letters.push(guess);
-        played.textContent = letters.join(', ');
-        //check input: is it a valid alpha key?
-       // if ((guess === 'a') || (guess === 'b') || (guess === 'c')){ 
                 // YES: 
                 // for loop:  compare user input to each letter of Letter[]
                     //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
-        for(var i=0; i<word.length; i++){
-            if (guess === word[i]){
-                blank[i] = word[i];
-                wordDisplay.textContent = blank.join(" "); 
-                  
+            for(var i=0; i<word.length; i++){
+                if (guess === word[i]){
+                    blank[i] = word[i];
+                    wordDisplay.innerHTML = blank.join(" ");
+                    count++;  
+                    
+                }
             }
+            replacedBlanks = replacedBlanks + count;
+            console.log(replacedBlanks + "replaced");
+
+//*********are any blanks left/all letters guessed> WIN
+ //           var check = blank.join();
+//          var blanksleft = check.search("_");
+ //          console.log("blanks" + blanksleft);
+            console.log("counter" + count);
+            //if no matches:  add letter to Used[] update Turns-1
+            if(count===0) {
+                    console.log("letter is not in word");
+                    turn=turn-1;
+                    console.log(turn);
+                    turnsLeft.innerHTML = turn;
+            }
+            
+        }
+        else {
+                //GAME OVER
+
+                gameover.innerHTML = "Game Over";
+        
         }
         //    
 
 
-                    //if no matches:  add letter to Used[] update Turns-1                
+                             
                 //update board:  Blank[], letters played:Used[],turns left:Turns    
 
 
