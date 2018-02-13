@@ -25,6 +25,8 @@
     <p><span id="gameover"></span></p>
     <!-- Score Board -->
     <p>Score: <span id="scoreboard"></span></p>
+    <!-- Image -->
+    <img id="hangmanImg" src="./assets/images/hmimg8.jpg">
     <!-- End of HTML   -->
 
 
@@ -38,12 +40,15 @@ var wordDisplay = document.getElementById("letterboard");
    var turnsLeft = document.getElementById("turns");
    var gameover = document.getElementById("gameover");
    var scoreboard = document.getElementById("scoreboard");
+   var imagenew = document.getElementById("hangmanImg");
    var win=0;
    var lose=0;
 
 // list of words: initialize array of game words 
    var food = ["spaghetti", "hamburger", "taco", "pizza", "felafel"];
 
+// hangman: initialize array of images
+ //   var hangmanImg = ["hmimg1.jpg", "hmimg2.jpg", "hmimg3.jpg", "hmimg4.jpg", "hmimg5.jpg", "hmimg6.jpg", "hmimg7.jpg", "hmimg8.jpg"];
 
 // Set word:  select random word from list 
    var randNum = Math.floor(Math.random() * food.length);
@@ -118,6 +123,9 @@ document.onkeyup = function(event) {
                    turn=turn-1;
                    console.log(turn);
                    turnsLeft.innerHTML = turn;
+                   var hmimg = ('./assets/images/hmimg' + turn + '.jpg');
+                   console.log(hmimg);
+                   imagenew.src=hmimg;
            }
            
        }
