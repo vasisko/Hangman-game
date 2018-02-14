@@ -15,22 +15,22 @@
     // list of words: initialize array of game words 
     var wordlist = ["spaghetti", "hamburger", "taco", "pizza", "felafel","meatloaf", "lasagna", "enchilada", "minestrone"];
     
-   
-function startGame () {
+// GAME FUNCTIONS:  start/play/restart ****************   
+function startGame () {  
 
         // Pick word:  select random word from list 
         randNum = Math.floor(Math.random() * wordlist.length);    
         gameWord = wordlist[randNum];
 
-        // Set board:  create array of characters(word) from gameword 
-        // populate letter board with blanks, post turns left
+        // Set board:  create array of characters(word) from game word 
+        // populate letter board with blanks
         for (var i=0; i<gameWord.length; i++){ 
                 word.push(gameWord.charAt(i));
                 blank.push("_");
                 console.log(word[i]);
-         }
+            }
 
-         // Initialize/Reset game board
+         // Set number of turns to be played
          turns = 8;
     
     
@@ -43,8 +43,12 @@ function startGame () {
         document.getElementById("hangmanImg").src = "./assets/images/hangman0.jpg";
 
         console.log(gameWord);
+        console.log("START Function");
         
 }
+// Play game: process input/compare to word/take turn/win/lose
+
+
 
 // Finish game:  update wins/losses and restart
 
@@ -52,30 +56,31 @@ function restartGame(){
         replacedBlanks=0;
         letters=[];
         startGame();
+        console.log("RE - START Function");
 }
-// START PLAY*****************************
+
+
+
+// ***************** PLAY*****************************
 
 startGame();
 
 
-    // capture user input:  onkeyup
-    document.onkeyup = function(event) {
+ // capture user input:  onkeyup
+document.onkeyup = function(event) {
     
     if ((turn > 0) && (replacedBlanks<word.length)){
             var count = 0;
             var guess = event.key.toLowerCase();
             console.log("User guess  " + guess);
     
-    //**************check to see that the guess is a new letter not previously played AND is valid key A-Z
-    //*********if (){}
-    
             // update used letters with guessed letter
             letters.push(guess);
             document.getElementById("used").innerHTML = letters.join(', ');
 
-                // YES: 
-                // for loop:  compare user input to each letter of Letter[]
-                    //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
+            // YES: 
+            // for loop:  compare user input to each letter of Letter[]
+            //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
             for(var i=0; i<word.length; i++){
                 if (guess === word[i]){
                     blank[i] = word[i];
@@ -115,10 +120,13 @@ startGame();
                 //Lose
                 lose++;
                 gameover.innerHTML = "Game Over";
+               
                 }
+        
+               
         
     }
 
 //GAME OVER -- reset/restart
-               
-    restartGame();
+restartGame();              
+    
