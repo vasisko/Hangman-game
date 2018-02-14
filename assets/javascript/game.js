@@ -16,7 +16,7 @@
     var wordlist = ["spaghetti", "hamburger", "taco", "pizza", "felafel","meatloaf", "lasagna", "enchilada", "minestrone"];
     
    
-    function startGame () {
+function startGame () {
 
         // Pick word:  select random word from list 
         randNum = Math.floor(Math.random() * wordlist.length);    
@@ -46,7 +46,13 @@
         
 }
 
-    
+// Finish game:  update wins/losses and restart
+
+function restartGame(){
+        replacedBlanks=0;
+        letters=[];
+        startGame();
+}
 // START PLAY*****************************
 
 startGame();
@@ -84,7 +90,6 @@ startGame();
             if(replacedBlanks === word.length){
                 win++;
                 gameover.innerHTML = "YOU WON!!!";
-                document.getElementById("wins").innerHTML = win;
                 }
             
             // if replacedBlanks = word.length, write to doc 
@@ -103,20 +108,17 @@ startGame();
                 document.getElementById("hangmanImg").src = hmimg;
                 turn=turn-1;
                 document.getElementById("turns").innerHTML = turn;
-                    
-            }
-            
-        }
-        
-                //GAME OVER
-               
+            }  
+
+        }     
         else  {
                 //Lose
                 lose++;
                 gameover.innerHTML = "Game Over";
-                document.getElementById("losses").innerHTML = lose;
-    
                 }
-      
-       
+        
     }
+
+//GAME OVER -- reset/restart
+               
+    restartGame();
