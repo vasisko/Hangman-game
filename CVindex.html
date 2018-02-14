@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="+en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="./assets/css/styles.css">
+
+    <script src="./assets/javascript/game.js"></script>-->
+
+    <title>Hungry for Hangman</title>
+</head>
+<body>
+    
+    <header>Hangman</header>
+    
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <img class="hangmanImg" src="./assets/images/hangman0.jpg">
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <!-- On-screen instructions -->
+                    <p>Guess a letter</p>
+                    <!-- Game over msg -->
+                    <p><span id="gameover"></span></p>
+                </div>
+
+                <div class="row">
+                    <!-- Word Board   -->
+                    <p>WORD:  <span id="letterboard"></span></p>
+                </div>
+
+                <div class="row">
+                    <!-- Letters played  -->
+                    <p>Used letters: <span id="used"></span></p>
+                </div>
+
+                <div class="row">
+                    <!-- Turns remaining  -->
+                     <p>Turns left: <span id="turns"></span></p>
+                </div>
+
+                <div class="row"> 
+                    <!-- Score Board -->
+                    <p>Score: <span id="scoreboard"></span></p>
+                </div>
+            </div><!--End of column-->
+
+        </div>
+
+    </div>
+<!-- End of HTML   -->
+
+
+    <script>
+    
+    // initialize var's
+    var wordDisplay = document.getElementById("letterboard");
+    var played = document.getElementById("used");
+    var turnsLeft = document.getElementById("turns");
+    var gameover = document.getElementById("gameover");
+    var scoreboard = document.getElementById("scoreboard");
+    var imagenew = document.getElementById("hangmanImg");
+    var win=0;
+    var lose=0;
+    
+    // list of words: initialize array of game words 
+    var wordlist = ["spaghetti", "hamburger", "taco", "pizza", "felafel","meatloaf", "lasagna", "enchilada", "minestrone"];
+    
+    // LOOP FOR EACH TIME PLAYED (for each word)
+    for (var i=0; i<wordlist.length; i++){
+
+        // Set Word for game
+        var gameWord = wordlist[i];
+        console.log(gameWord);
+        console.log("length of" + gameWord.length);
+        console.log("Point A");
+        // Set board:  create array of characters from game word
+        // Populate letter board with blanks, post turns left
+        var word = [];
+        var blank = [];
+        var turn = 8;
+        for (var j=0; j<gameWord.length; j++){ 
+            word.push(gameWord.charAt(j));
+            blank.push("_");
+            console.log(word[j]);
+        }
+        console.log("Point B");
+        wordDisplay.innerHTML = blank.join(" ");
+        turnsLeft.innerHTML = turn;
+    // game board display set for start of game
+    var letters=[];
+    var replacedBlanks = 0;
+    
+    // START PLAY*****************************
+    
+    // capture user input:  onkeyup
+    document.onkeyup = function(event) {
+    
+    if ((turn > 0) && (replacedBlanks<word.length)){
+            var count = 0;
+            var guess = event.key.toLowerCase();
+            console.log("User guess  " + guess);
+    
+    //**************check to see that the guess is a new letter not previously played AND is valid key A-Z
+    //*********if (){}
+    
+            // update used letters with guessed letter
+            letters.push(guess);
+            played.textContent = letters.join(', ');
+        
+                // YES: 
+                // for loop:  compare user input to each letter of Letter[]
+                    //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
+            for(var i=0; i<word.length; i++){
+                if (guess === word[i]){
+                    blank[i] = word[i];
+                    wordDisplay.innerHTML = blank.join(" ");
+                    count++;  
+                }
+                
+            }
+            replacedBlanks = replacedBlanks + count;
+            console.log(replacedBlanks + "replaced");
+    
+            if(replacedBlanks === word.length){
+                win++;
+                gameover.innerHTML = "YOU WON!!!";
+                scoreboard.innerHTML="Wins:" + win + "Losses: " +lose;
+                turn=0;
+                }
+            
+            // if replacedBlanks = word.length, write to doc 
+            //you win, win++, update win tally, exit (can you set turn to <0?....then add victory to game over )
+    
+    //*********are any blanks left/all letters guessed> WIN
+    //       
+            console.log("counter" + count);
+            //if no matches:  add letter to Used[] update Turns-1
+            if(count===0) {
+                    console.log("letter is not in word");
+                    var hmimg = ('./assets/images/hmimg' + turn + '.jpg');
+                    console.log(hmimg);
+                    imagenew.src=hmimg;
+                    turn=turn-1;
+                    console.log(turn);
+                    turnsLeft.innerHTML = turn;
+                    
+            }
+            
+        }
+        
+                //GAME OVER
+               
+        else  {
+                //Lose
+                lose++;
+                gameover.innerHTML = "Game Over";
+                scoreboard.innerHTML="Wins:  " + win + "  Losses: " +lose;
+    
+                }
+      
+            }   
+    }
+</script>
+</body>
+</html>

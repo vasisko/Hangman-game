@@ -5,28 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <script src="javascript.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="./assets/css/styles.css">
 
-    <title>Hangman:  </title>
+    <script src="./assets/javascript/game.js"></script>-->
+
+    <title>Hungry for Hangman</title>
 </head>
 <body>
     
-    <p>Hangman</p>
+    <header>Hungry for Hangman</header>
+    
+    <div class="container">
+
+        <div class="row">
+
+            <div class="col-md-6">
+                <img id="hangmanImg" src="./assets/images/hangman0.jpg">
+            </div>
+
+            <div class="col-md-6">
+                <div class="row">
+                    <!-- On-screen instructions -->
+                    <p>Guess a letter</p>
+                    <!-- Game over msg -->
+                    
+                </div>
+
+                <div class="row">
+                    <!-- Word Board   -->
+                    <p>WORD:  <span id="letterboard"></span></p>
+                </div>
+
+                <div class="row">
+                    <!-- Letters played  -->
+                    <p>Used letters: <span id="used"></span></p>
+                </div>
+
+                <div class="row">
+                    <!-- Turns remaining  -->
+                     <p>Turns left: <span id="turns"></span></p>
+                </div>
+
+                <div class="row"> 
+                    <!-- Score Board -->
+                    <p>Wins: <span id="wins"></span></p>
+                </div>
+                <div class="row"> 
+                    <!-- Score Board -->
+                    <p>Losses: <span id="losses"></span></p>
+                </div>
+                <div class="row"> 
+                    <p><span id="gameover"></span></p>
+                </div>
+            </div><!--End of column-->
+
+        </div>
+
+    </div>
+<!-- End of HTML   -->
 
 
-    <!-- On-screen instructions -->
-    <p>Guess a letter</p>
-    <!-- Word Board   -->
-    <p>WORD:  <span id="letterboard"></span></p>
-    <!-- Letters played  -->
-    <p>Used letters: <span id="used"></span></p>
-    <!-- Turns remaining  -->
-    <p>Turns left: <span id="turns"></span></p>
-    <!-- Game over msg -->
-    <p><span id="gameover"></span></p>
-    <!-- Score Board -->
-    <p>Score: <span id="scoreboard"></span></p>
-    <!-- End of HTML   -->
+<script src="./assets/javascript/game.js"></script>-->
+    
 
+</script>
 </body>
 </html>
