@@ -3,7 +3,6 @@
  
     var win = 0;
     var lose = 0;
-    var randNum = 0;
     var gameWord = "";
     var word = [];
     var blank = [];
@@ -21,12 +20,14 @@
 function startGame () {  
 
         // Pick word:  select random word from list 
-        randNum = Math.floor(Math.random() * wordlist.length);    
+        var randNum = Math.floor(Math.random() * wordlist.length);    
         gameWord = wordlist[randNum];
-        console.log("word: " + gameWord);
+        console.log("gameWord: " + gameWord);
 
         // Set board:  create array of characters(word) from game word 
         // Populate letter board with blanks
+        word = [];
+        blank = [];
         for (var i=0; i<gameWord.length; i++){ 
                 word.push(gameWord.charAt(i));
                 blank.push("_");
@@ -56,7 +57,7 @@ function restartGame(){
 
 startGame();
 
-console.log(gameWord);
+
 // Capture user input:  onkeyup
 document.onkeyup = function(event) {
 
@@ -74,6 +75,7 @@ document.onkeyup = function(event) {
             // YES: 
             // for loop:  compare user input to each letter of Letter[]
             //if match:  replace blanks with letter) -- Letter[i] replaces Blank[i]
+            console.log(word + "check4");
             for(var i=0; i<word.length; i++){
                 if (guess === word[i]){
                     blank[i] = word[i];
@@ -81,7 +83,7 @@ document.onkeyup = function(event) {
                     count++;  
                 }  
             }
-
+console.log(word + "check2");
             //How many blanks are left?
             replacedBlanks = replacedBlanks + count;
 
@@ -91,8 +93,10 @@ document.onkeyup = function(event) {
                 win++;
                 gameover.innerHTML = "YOU WON!!!  Molto Bene!!";
                 document.getElementById("wins").innerHTML = win;
+                restartGame();
                 }
-            
+                console.log(word + "check3");
+
             //if no matches:  add letter to Used[] update Turns-1
             if(count===0) {
                 console.log("letter is not in word");
@@ -110,10 +114,11 @@ document.onkeyup = function(event) {
                 lose++;
                 gameover.innerHTML = "Game Over. You lost -  No food for you!";
                 document.getElementById("losses").innerHTML = lose;
+                restartGame();
         }
              
     }
-
+    
 //GAME OVER -- reset/restart
-restartGame();              
+              
     
