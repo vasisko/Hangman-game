@@ -18,7 +18,7 @@
 
 // GAME FUNCTIONS:  start/restart ****************   
 function startGame () {  
-
+         
         // Pick word:  select random word from list 
         var randNum = Math.floor(Math.random() * wordlist.length);    
         gameWord = wordlist[randNum];
@@ -51,6 +51,7 @@ function restartGame(){
         gameWord="";
         letters=[];
         startGame();
+    
 }
 
 // ***************** PLAY*****************************
@@ -61,6 +62,9 @@ startGame();
 // Capture user input:  onkeyup
 document.onkeyup = function(event) {
 
+    //Clear gameover message
+    gameover.innerHTML = "";
+    
     var guess = event.key.toLowerCase();
             console.log("User guess  " + guess);
     
@@ -112,7 +116,7 @@ console.log(word + "check2");
         else {
                 //Lose
                 lose++;
-                gameover.innerHTML = "Game Over. You lost -  No food for you!";
+                gameover.innerHTML = "Game Over. You lost - No food for you!";
                 document.getElementById("losses").innerHTML = lose;
                 restartGame();
         }
