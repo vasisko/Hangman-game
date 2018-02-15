@@ -1,0 +1,17 @@
+/*  Hangman stylesheet  */
+
+body {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 16px;    
+}
+header { 
+    height: 125px;
+}
+h1 {
+    font-size: 2rem;
+}
+.wordboard{
+    font-size: 1.5rem;
+    padding:20px;
+    background-color: lightgrey;
+}
