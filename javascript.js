@@ -12,9 +12,6 @@ var lose=0;
 // list of words: initialize array of game words 
 var food = ["spaghetti", "hamburger", "taco", "pizza", "felafel"];
 
-// hangman: initialize array of images
-//   var hangmanImg = ["hmimg1.jpg", "hmimg2.jpg", "hmimg3.jpg", "hmimg4.jpg", "hmimg5.jpg", "hmimg6.jpg", "hmimg7.jpg", "hmimg8.jpg"];
-
 // Set word:  select random word from list 
 var randNum = Math.floor(Math.random() * food.length);
         console.log(food[randNum]);

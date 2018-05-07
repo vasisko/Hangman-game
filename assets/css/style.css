@@ -4,14 +4,19 @@ body {
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 16px;    
 }
-header { 
-    height: 125px;
+.jumbotron { 
+    background-color: #2878f0;
+    border: solid 1px black;
 }
 h1 {
-    font-size: 2rem;
+    font-size: 3rem;
 }
 .wordboard{
-    font-size: 1.5rem;
+    font-size: 3 rem;
     padding:20px;
-    background-color: lightgrey;
+    background-color: #94d132;
+}
+.main {
+    font-size:1.8rem;
+    background-color: #c3d1f4;
 }
